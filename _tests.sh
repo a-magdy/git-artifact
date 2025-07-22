@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 clear 
 
@@ -8,6 +8,7 @@ PATH=$(pwd):$PATH
 
 which git 
 git --version
+bash --version | head -n 1
 
 cd .test
 root_folder=$(pwd)
