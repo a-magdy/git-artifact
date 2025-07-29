@@ -1,0 +1,78 @@
+.TH GIT-ARTIFACT 1 "2025-07-29" "git-artifact" "Git Manual"
+.SH NAME
+git-artifact \- Effortless artifact management using Git repositories
+.SH SYNOPSIS
+.B git artifact
+.I <command>
+.RI [ options ]
+.SH DESCRIPTION
+.B git-artifact
+brings artifact management directly into your Git workflow, making it easy to store, version, and retrieve build artifacts without extra infrastructure.
+.PP
+git-artifact leverages Git's powerful version control features to manage artifacts as if they were part of your source code.
+.SH COMMANDS
+.TP
+.B init \-\-url=<url> \-\-path=<path>
+Initialize a new repository for artifact management
+.TP
+.B add-n-push \-t <tag>
+Commit and push artifacts with a tag
+.TP
+.B clone \-\-url=<url> \-\-path=<path>
+Clone a repository and set it up for artifact management
+.TP
+.B find-latest [\-r <regex>]
+Find the latest artifact using an optional pattern
+.TP
+.B fetch-co-latest [\-\-regex <regex>]
+Download and checkout the latest artifact version
+.SH OPTIONS
+.TP
+.B \-h
+Show help information
+.TP
+.B \-t <tag>
+Specify a tag for the artifact
+.TP
+.B \-r <regex>, \-\-regex <regex>
+Use a regex pattern to filter artifacts
+.TP
+.B \-\-url=<url>
+Specify the Git repository URL
+.TP
+.B \-\-path=<path>
+Specify the local path for the repository
+.SH EXAMPLES
+.PP
+Initialize a new artifact repository:
+.RS
+.B git artifact init \-\-url=git@github.com:user/artifacts.git \-\-path=artifacts
+.RE
+.PP
+Add and push an artifact:
+.RS
+.B git artifact add-n-push \-t v1.0
+.RE
+.PP
+Find the latest artifact:
+.RS
+.B git artifact find-latest \-r 'v*.*'
+.RE
+.PP
+Fetch and checkout the latest artifact:
+.RS
+.B git artifact fetch-co-latest \-\-regex 'v*.*'
+.RE
+.SH PERMISSIONS
+git-artifact relies on Git tags for artifact management. As a producer, you need permission to create and push tags to the remote repository. To effectively manage and clean up old artifacts, having permission to delete tags is also recommended.
+.SH AUTHOR
+Written by the Praqma team.
+.SH REPORTING BUGS
+Report bugs at: https://github.com/praqma/git-artifact/issues
+.SH COPYRIGHT
+This is free software; see the source for copying conditions.
+.SH SEE ALSO
+.BR git (1),
+.BR git-tag (1),
+.BR git-push (1),
+.BR git-clone (1)
